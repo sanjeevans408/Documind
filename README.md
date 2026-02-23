@@ -32,4 +32,37 @@ Paste it into the same folder.
 
 Rename the new file to exactly .env.
 
+
 Fill in Your Secrets: Open the new .env file and replace the placeholder text (like your_key_here) with your actual private API keys from OpenAI and Pinecone.
+
+
+Week 1 – Ingestion Pipeline
+🎯 Goal:
+Store PDF content in Pinecone as searchable vectors.
+🔹 What You Do:
+Load PDF
+Split into chunks (small sections)
+Convert each chunk into embedding (1024-d vector using NVIDIA model)
+Store vector + metadata (page number, source) in Pinecone
+🔹 Output of Week 1:
+Pinecone index created
+All document chunks stored
+Embeddings successfully uploaded
+🔹 Why Important:
+Without ingestion, there is nothing to search.
+This builds the system’s memory.
+✅ Week 2 – Retrieval Engine + Guardrails
+🎯 Goal:
+Answer questions using only stored document content.
+🔹 What You Do:
+Convert user question into embedding
+Search Pinecone for top similar chunks
+Retrieve context
+Send context to NVIDIA LLM
+Enforce strict rule:
+If answer not in context → refuse
+🔹 Output of Week 2:
+Context-based answering
+Citations (page + source)
+Hallucination prevention
+🔹 Why Important:
